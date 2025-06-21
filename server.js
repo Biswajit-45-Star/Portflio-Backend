@@ -6,7 +6,12 @@ const db = require("./db");
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static("public")); // Serve static files from 'public' folder
+app.use(express.static("../public")); // Serve static files from 'public' folder
+
+// ✅ Root route
+app.get("/api", (req, res) => {
+  res.send("API is running 🚀");
+});
 
 // POST feedback
 app.post("/api/feedback", (req, res) => {
@@ -25,8 +30,6 @@ app.get("/api/feedback", (req, res) => {
     res.json(results);
   });
 });
-
-
 
 app.listen(3000, () => {
   console.log("Server running at http://localhost:3000");
